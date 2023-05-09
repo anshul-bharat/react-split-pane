@@ -1,4 +1,5 @@
-import { render, findDOMNode } from 'react-dom';
+import { findDOMNode, render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import chai from 'chai';
 import spies from 'chai-spies';
 import ReactTestUtils from 'react-dom/test-utils';
@@ -20,11 +21,16 @@ const renderComponent = (jsx, renderToDOM) => {
     document.body.appendChild(testDiv);
     return render(jsx, testDiv);
   }
+
   return ReactTestUtils.renderIntoDocument(jsx);
 };
 
+
+
 export default (jsx, renderToDom = false) => {
+
   const splitPane = renderComponent(jsx, renderToDom);
+
   const component = ReactTestUtils.findRenderedComponentWithType(
     splitPane,
     SplitPane
